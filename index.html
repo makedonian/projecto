@@ -1,0 +1,44 @@
+<!doctype html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!--><html lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+	<title>Projecto</title>
+	<meta name="description" content="">
+	<meta name="author" content="">
+	<!--[if lt IE 9]>
+		<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" /> 
+	<link rel="stylesheet" href="css/base.css">
+    <style>
+        #todos h2 input {
+            vertical-align:middle; 
+            margin-right:10px;
+        }
+        #todos > li {
+            border-bottom:1px solid #ccc; 
+            padding:10px;
+        }
+        #todos li ul {
+        }
+        #todos li ul li,
+        #todos li ul li p {
+            padding:0; 
+            margin:0;
+        }
+    </style>
+</head>
+<body>
+	<div class="container">	
+        <ul id="todos">
+        </ul>
+    </div>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/underscore-min.js"></script>
+    <script src="js/backbone-min.js"></script>
+	<script src="js/app.js"></script>
+</body>
+</html>
