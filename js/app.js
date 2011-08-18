@@ -2,24 +2,19 @@ $(function() {
     var TodoView = Backbone.View.extend({
         initialize: function() {
             _.bindAll(this, 'render');
-            this.model.bind('change', this.render);
             this.render();
         },
         tagName: 'li',
         className: 'todo',
-        model: Todo,
         templateNoChildren: _.template(
             "<li><h2><input type='checkbox'><%= content %></h2></li>"        
         ),
         events: {
-            'click input': 'xxx'
+            'click': 'saveMe'
         },
-        xxx: function() {
-            var color = 'black';
-            if ($(this.el).find('input').get(0).checked) {
-                color = 'red';   
-            }
-            $(this.el).find("h2").css("color",color);
+        saveMe: function() {
+            console.log('hola');
+            this.model.save();
         },
         render: function() {
             $(this.el).html(this.templateNoChildren(this.model.toJSON()));
@@ -34,9 +29,6 @@ $(function() {
         content: '',
         done: false,
         weight: 1,
-        initialize: function() {
-            this.view = new TodoView({model:this})
-        }
     });
 
     var t1 = new Todo({assignedTo:['bo'], content:'bla bla'});
@@ -44,22 +36,22 @@ $(function() {
     var t3 = new Todo({assignedTo:['b'], content:'Third todo bla bla'});
 
     var TodoCollection = Backbone.Collection.extend({
-        model: Todo
+        model: Todo,
+        url: '/todos'
     });
 
-
     var TodoList = new TodoCollection(); 
+
     TodoList.bind("add", function(t) {
-        t.view.render();
-        $('#todos').append(t.view.el);
+        var v = new TodoView({'model': t});
+        v.render();
+        $('#todos').append(v.el);
     });
 
     TodoList.add([t1,t2]);
 
-    setTimeout(function() {
-        TodoList.add(t3);
-        t1.set({content:'some new content'});
-    }, 3000);
-
+    $("#new_task").click(function() {
+        console.log('click');
+    });
 
 });
